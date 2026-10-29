@@ -133,7 +133,7 @@
 (function () {
   'use strict';
   var S = window.S, Sc = S.Screens;
-  var IDS = ['lula', 'bolsonaro', 'alexandre', 'renan'];
+  var IDS = ['lula', 'bolsonaro', 'alexandre', 'renan', 'trump'];
 
   function speaker(ctx, x, y, t) {
     ctx.save();
@@ -386,7 +386,7 @@
       ctx.fillRect(350, 204, S.W - 384, 1);
       S.text(ctx, 'O QUE CADA UM JUNTA', 350, 224, {
         size: 13, color: '#ffd23c', shadow: false });
-      var chars = ['lula', 'bolsonaro', 'alexandre', 'renan'];
+      var chars = ['lula', 'bolsonaro', 'alexandre', 'renan', 'trump'];
       for (var k = 0; k < chars.length; k++) {
         var yy = 246 + k * 20;
         S.Gfx.drawChar(ctx, chars[k], { x: 360, y: yy + 7, state: 'idle', t: t + k * 20, facing: 1, scale: .38 });
@@ -842,7 +842,7 @@
         }
       }
 
-      var chars = ['lula', 'bolsonaro', 'alexandre', 'renan'];
+      var chars = ['lula', 'bolsonaro', 'alexandre', 'renan', 'trump'];
       for (var c = 0; c < chars.length; c++) {
         S.Gfx.drawChar(ctx, chars[c], {
           x: S.W / 2 + (c - 1.5) * 74, y: 276,

@@ -8,12 +8,12 @@
 
   Gfx.CHARS = {
     lula: {
-      name: 'LULA', full: 'LUIZ INACIO LULA DA SILVA',
+      id: 'lula', name: 'LULA', full: 'LUIZ INACIO LULA DA SILVA',
       human: true, hairStyle: 'wavy', beard: true, smile: true,
-      body: '#252a3a', body2: '#39405a', dark: '#14171f',
-      suit: '#252a3a', suit2: '#39405a', suitDark: '#14171f',
-      skin: '#e8ac7e', skin2: '#cf8f63',
-      hair: '#e9e9e9', hair2: '#bfbfbf', eye: '#4a3526',
+      body: '#212f58', body2: '#31447a', dark: '#111833',
+      suit: '#212f58', suit2: '#31447a', suitDark: '#111833',
+      skin: '#feb678', skin2: '#d9925c',
+      hair: '#e9e4e2', hair2: '#bdb6b6', eye: '#4a3526',
       tie: '#cf2b25', tie2: '#8d1d17', shirt: '#ffffff', card: '#c0392b', pickup: 'picanha',
       shoe: '#15181f', shoeB: '#2a2f3c', cuff: '#ffffff', pin: false,
       superBody: '#ffe14d', superBody2: '#fff5a8', superDark: '#e0a91a',
@@ -22,12 +22,12 @@
       desc: 'Junta picanhas. Mesmos poderes e velocidade de todos.'
     },
     bolsonaro: {
-      name: 'BOLSONARO', full: 'JAIR BOLSONARO',
+      id: 'bolsonaro', name: 'BOLSONARO', full: 'JAIR BOLSONARO',
       human: true, hairStyle: 'short', beard: false, smile: false,
-      body: '#22304f', body2: '#33456e', dark: '#131b2e',
-      suit: '#22304f', suit2: '#33456e', suitDark: '#131b2e',
-      skin: '#f0b083', skin2: '#d89468',
-      hair: '#4a3626', hair2: '#8d8378', eye: '#3c6ea8',
+      body: '#22305e', body2: '#31457e', dark: '#121c3c',
+      suit: '#22305e', suit2: '#31457e', suitDark: '#121c3c',
+      skin: '#febc7e', skin2: '#d9975f',
+      hair: '#4c2f21', hair2: '#7a5a44', eye: '#3c6ea8',
       tie: '#1aa053', tie2: '#ffd23c', shirt: '#ffffff', card: '#1e7a3c', pickup: 'comprimido',
       shoe: '#15181f', shoeB: '#2a2f3c', cuff: '#ffffff', pin: true,
       superBody: '#ffe14d', superBody2: '#fff5a8', superDark: '#e0a91a',
@@ -36,14 +36,14 @@
       desc: 'Junta pilulas azuis. Mesmos poderes e velocidade de todos.'
     },
     alexandre: {
-      name: 'ALEXANDRE DE MORAIS', full: 'ALEXANDRE DE MORAIS',
+      id: 'alexandre', name: 'ALEXANDRE DE MORAIS', full: 'ALEXANDRE DE MORAIS',
       human: true, hairStyle: 'bald', beard: false, smile: false,
-      body: '#1b1b20', body2: '#2c2c34', dark: '#0d0d10',
-      suit: '#1b1b20', suit2: '#2c2c34', suitDark: '#0d0d10',
-      skin: '#f0bd92', skin2: '#d69a6d',
+      body: '#1a1a20', body2: '#2b2b34', dark: '#0c0c10',
+      suit: '#1a1a20', suit2: '#2b2b34', suitDark: '#0c0c10',
+      skin: '#fcbd8a', skin2: '#d99a66',
       hair: '#2a2318', hair2: '#4a4033', eye: '#4a4a52',
-      tie: '#2a4a8a', tie2: '#6f93d6', shirt: '#bcd4f5',
-      shoe: '#101014', shoeB: '#25252d', cuff: '#bcd4f5',
+      tie: '#4a6fa5', tie2: '#7f9fd0', shirt: '#ffffff',
+      shoe: '#101014', shoeB: '#25252d', cuff: '#ffffff',
       pin: false, card: '#2a3a6e', pickup: 'dinheiro',
       superBody: '#ffe14d', superBody2: '#fff5a8', superDark: '#e0a91a',
       top: 6.2, jump: 6.6, acc: 0.046875,
@@ -51,18 +51,32 @@
       desc: 'Junta dinheiro. Mesmos poderes e velocidade de todos.'
     },
     renan: {
-      name: 'RENAN SANTOS', full: 'RENAN SANTOS',
+      id: 'renan', name: 'RENAN SANTOS', full: 'RENAN SANTOS',
       human: true, hairStyle: 'short', beard: 'stubble', smile: false, noTie: true,
-      body: '#1c2440', body2: '#2c3860', dark: '#101728',
-      suit: '#1c2440', suit2: '#2c3860', suitDark: '#101728',
-      skin: '#eeae84', skin2: '#d0906a',
-      hair: '#171512', hair2: '#3a342c', eye: '#4a3526',
-      tie: '#1c2440', tie2: '#2c3860', shirt: '#ffffff', card: '#3b4a86',
+      body: '#1a295e', body2: '#273a7d', dark: '#0e183f',
+      suit: '#1a295e', suit2: '#273a7d', suitDark: '#0e183f',
+      skin: '#fcad72', skin2: '#d78c57',
+      hair: '#1f181a', hair2: '#3a3034', eye: '#4a3526',
+      tie: '#1a295e', tie2: '#273a7d', shirt: '#ffffff', card: '#3b4a86',
       shoe: '#15181f', shoeB: '#2a2f3c', cuff: '#ffffff', pin: false,
       superBody: '#ffe14d', superBody2: '#fff9c8', superDark: '#dca516',
       top: 6.2, jump: 6.6, acc: 0.046875,
       ability: 'VOO, PLANEIO, PISAO E DROP DASH',
       desc: 'Junta aneis. Mesmos poderes e velocidade de todos.'
+    },
+    trump: {
+      id: 'trump', name: 'DONALD TRUMP', full: 'DONALD J. TRUMP',
+      human: true, hairStyle: 'short', beard: false, smile: false,
+      body: '#0e1a52', body2: '#1d2d78', dark: '#060c2c',
+      suit: '#0e1a52', suit2: '#1d2d78', suitDark: '#060c2c',
+      skin: '#fdb071', skin2: '#d78f58',
+      hair: '#fcd472', hair2: '#e0b047', eye: '#3c6ea8',
+      tie: '#cc1f2a', tie2: '#8e1620', shirt: '#ffffff', card: '#b8912f', pickup: 'hamburguer',
+      shoe: '#15181f', shoeB: '#2a2f3c', cuff: '#ffffff', pin: true,
+      superBody: '#ffe14d', superBody2: '#fff5a8', superDark: '#e0a91a',
+      top: 6.2, jump: 6.6, acc: 0.046875,
+      ability: 'VOO, PLANEIO, PISAO E DROP DASH',
+      desc: 'Junta hamburgueres. Mesmos poderes e velocidade de todos.'
     }
   };
 
@@ -1269,15 +1283,18 @@
     ctx.scale(face, 1);
     if (o.flash && Math.floor(t / 2) % 2 === 0) ctx.globalAlpha = .35;
 
+    var sprB = o.superForm ? null : (Gfx.spriteDe && Gfx.spriteDe(c.id));
     if (st === 'roll' || st === 'jump' || st === 'spring' || st === 'dead') {
-      Gfx.humanBall(ctx, c, o.spin || t * .4, 15);
+      if (sprB) Gfx.spriteBola(ctx, sprB, o.spin || t * .4, 15, c);
+      else Gfx.humanBall(ctx, c, o.spin || t * .4, 15);
       ctx.restore();
       if (o.superForm) Gfx.superAura(ctx, o.x, o.y - 15, 20, t);
       return;
     }
 
     if (st === 'spindash') {
-      Gfx.humanBall(ctx, c, t * 1.1, 14);
+      if (sprB) Gfx.spriteBola(ctx, sprB, t * 1.1, 14, c);
+      else Gfx.humanBall(ctx, c, t * 1.1, 14);
       ctx.restore();
       ctx.save();
       ctx.translate(o.x, o.y);
@@ -1287,6 +1304,18 @@
       for (d = 0; d < 3; d++) {
         S.circle(ctx, -14 - d * 9 - (t * 2 % 7), -4 - Math.sin(t * .4 + d) * 3, 4 - d);
         ctx.fill();
+      }
+      ctx.restore();
+      return;
+    }
+
+    // pixel art do personagem; a caricatura vetorial fica de reserva
+    var spr = o.superForm ? null : (Gfx.spriteDe && Gfx.spriteDe(c.id));
+    if (spr) {
+      Gfx.desenhaSprite(ctx, spr, st, t);
+      if (st === 'hurt') {
+        ctx.globalAlpha = .4; ctx.fillStyle = '#ffffff';
+        S.circle(ctx, 1.5, -33, 15); ctx.fill();
       }
       ctx.restore();
       return;
@@ -2293,7 +2322,8 @@
     var k = Gfx.pickupKind(charId);
     return k === 'picanha' ? '#e8776a' :
            (k === 'dinheiro' ? '#7fe0cf' :
-           (k === 'comprimido' ? '#8fc4ff' : '#ffe98a'));
+           (k === 'comprimido' ? '#8fc4ff' :
+           (k === 'hamburguer' ? '#f0a845' : '#ffe98a')));
   };
 
   Gfx.pickupKind = function (charId) {
@@ -2308,6 +2338,7 @@
     if (k === 'picanha') Gfx.picanha(ctx, x, y, t, scale);
     else if (k === 'dinheiro') Gfx.dinheiro(ctx, x, y, t, scale);
     else if (k === 'comprimido') Gfx.comprimido(ctx, x, y, t, scale);
+    else if (k === 'hamburguer') Gfx.hamburguer(ctx, x, y, t, scale);
     else Gfx.ring(ctx, x, y, t, scale);
   };
 
@@ -2316,7 +2347,8 @@
     var k = Gfx.pickupKind(charId);
     return k === 'picanha' ? 'PICANHAS' :
            (k === 'dinheiro' ? 'DINHEIRO' :
-           (k === 'comprimido' ? 'PILULAS' : 'ANEIS'));
+           (k === 'comprimido' ? 'PILULAS' :
+           (k === 'hamburguer' ? 'LANCHES' : 'ANEIS')));
   };
 })();
 
@@ -2417,6 +2449,70 @@
     ctx.save();
     ctx.fillStyle = g;
     ctx.fillRect(0, topo, S.W, S.H - topo);
+    ctx.restore();
+  };
+})();
+
+/* ---------- coletável do Trump: hambúrguer ---------- */
+(function () {
+  'use strict';
+  var S = window.S, Gfx = S.Gfx;
+
+  function camada(ctx, w, y, h, cor, r) {
+    ctx.fillStyle = cor;
+    S.roundRect(ctx, -w / 2, y, w, h, r === undefined ? h / 2 : r); ctx.fill();
+  }
+
+  Gfx.hamburguer = function (ctx, x, y, t, scale) {
+    scale = scale || 1;
+    var w = .45 + .55 * Math.abs(Math.cos(t * .11));
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.scale(scale * w, scale);
+    ctx.rotate(Math.sin(t * .05) * .07);
+
+    // pão de baixo
+    camada(ctx, 17, 3.4, 4.4, '#b56a28');
+    camada(ctx, 17, 3.4, 2.6, '#d98c3e');
+
+    // alface
+    ctx.fillStyle = '#4fb04a';
+    ctx.beginPath();
+    ctx.moveTo(-9, 3.6);
+    for (var i = 0; i <= 6; i++) {
+      var px = -9 + i * 3;
+      ctx.quadraticCurveTo(px + .8, 1.2, px + 1.6, 3.6);
+      ctx.quadraticCurveTo(px + 2.4, 5.4, px + 3, 3.6);
+    }
+    ctx.lineTo(9, 3.6); ctx.closePath(); ctx.fill();
+
+    // queijo
+    ctx.fillStyle = '#f5b531';
+    S.poly(ctx, [-8.5, 1.4, 8.5, 1.4, 6.6, 4.4, 2.4, 2.6, -1.8, 4.6, -6, 2.4]); ctx.fill();
+
+    // carne
+    camada(ctx, 16.4, -2.2, 4.2, '#6b3a1c');
+    camada(ctx, 16.4, -2.2, 2.6, '#8a4c25');
+
+    // pão de cima
+    ctx.fillStyle = '#c4762c';
+    ctx.beginPath();
+    ctx.ellipse(0, -2.4, 8.8, 6.4, 0, Math.PI, 0);
+    ctx.closePath(); ctx.fill();
+    ctx.fillStyle = '#e39a45';
+    ctx.beginPath();
+    ctx.ellipse(0, -2.8, 8.2, 5.6, 0, Math.PI, 0);
+    ctx.closePath(); ctx.fill();
+
+    // gergelim
+    ctx.fillStyle = '#ffeec4';
+    S.ellipse(ctx, -4.4, -5.6, 1.5, .9, -.5); ctx.fill();
+    S.ellipse(ctx, 0, -7, 1.5, .9, 0); ctx.fill();
+    S.ellipse(ctx, 4.4, -5.4, 1.5, .9, .5); ctx.fill();
+
+    // brilho
+    ctx.fillStyle = 'rgba(255,255,255,.4)';
+    S.ellipse(ctx, -3.6, -6.4, 2.6, 1.1, -.45); ctx.fill();
     ctx.restore();
   };
 })();
