@@ -71,11 +71,12 @@ eles é a aparência e o que cada um coleta.
 | **Bolsonaro** | Pílulas azuis |
 | **Alexandre de Morais** | Maços de dinheiro |
 | **Renan Santos** | Anéis dourados |
+| **Donald Trump** | Hambúrgueres |
 
 Qualquer um quebra os blocos `X` rolando neles em velocidade.
 
 O coletável de cada um vale na fase, na fase especial e no monitor de item, e o
-HUD muda junto (PICANHAS, PILULAS, DINHEIRO ou ANEIS).
+HUD muda junto (PICANHAS, PILULAS, DINHEIRO, ANEIS ou LANCHES).
 
 As vozes ficam em `audio/` (`lula.mp3`, `bolsonaro.mp3`, `alexandre.mp3`,
 `renan.mp3`), junto do tema do chefe (`boss-daniel.mp3`) — troque os arquivos mantendo os nomes para mudar as falas.
