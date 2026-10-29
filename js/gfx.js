@@ -2433,8 +2433,9 @@
 
   /* A arte cobre a tela inteira, sem borda e sem movimento.
      CAPA_FOCO escolhe que parte fica visivel quando sobra largura:
-     0 = encosta na esquerda, 1 = na direita. */
-  Gfx.CAPA_FOCO = .72;
+     0 = encosta na esquerda, 1 = na direita. A capa atual tem o mesmo
+     formato da tela, entao nao sobra nada e o valor fica centrado. */
+  Gfx.CAPA_FOCO = .5;
 
   Gfx.drawCapa = function (ctx) {
     var img = Gfx.capa;
