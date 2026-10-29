@@ -16,33 +16,66 @@
     S.text(ctx, txt, x, y, { size: 15, color: color || '#ffffff', outline: 'rgba(10,14,30,.85)', outlineW: 4, shadow: false });
   }
 
+  /* crachá do personagem: foto, coletável e corações das vidas */
+  HUD.perfil = function (ctx, o) {
+    var Gfx = S.Gfx;
+    var lado = o.lado || 32, pad = 6;
+    var temItem = o.rings !== undefined;
+    var vidas = (o.lives === undefined || o.lives < 0) ? -1 : o.lives;
+    var MAXC = 5;
+    var nCor = vidas < 0 ? 0 : Math.min(vidas, MAXC);
+    var extra = vidas > MAXC ? vidas - MAXC : 0;
+    var wItem = temItem ? 68 : 0;
+    var wCor = nCor * 16 + (extra ? 26 : 0);
+    var w = pad + lado + (wItem ? 8 : 0) + wItem + (wCor ? 6 : 0) + wCor + pad;
+    var h = lado + pad * 2;
+    var x = o.x, y = o.y, meio = y + h / 2;
+
+    ctx.save();
+    ctx.globalAlpha = o.alpha === undefined ? .58 : o.alpha;
+    ctx.fillStyle = '#070b1c';
+    S.roundRect(ctx, x, y, w, h, 11); ctx.fill();
+    ctx.restore();
+    ctx.save();
+    ctx.strokeStyle = 'rgba(255,255,255,.2)'; ctx.lineWidth = 1.4;
+    S.roundRect(ctx, x + .7, y + .7, w - 1.4, h - 1.4, 10.4); ctx.stroke();
+    ctx.restore();
+
+    Gfx.retrato(ctx, o.charId, x + pad, y + pad, lado);
+
+    var cx = x + pad + lado + 8;
+    if (temItem) {
+      Gfx.pickup(ctx, cx + 11, meio, 0, .62, o.charId);
+      var pisca = o.alerta && Math.floor((o.t || 0) / 8) % 2 === 0;
+      S.text(ctx, 'x ' + S.pad(o.rings, 3), cx + 25, meio + 6, {
+        size: 16, color: pisca ? '#ff5c5c' : '#ffffff',
+        outline: 'rgba(8,10,24,.9)', outlineW: 4, shadow: false });
+      cx += wItem + 6;
+    }
+    for (var i = 0; i < nCor; i++) Gfx.coracao(ctx, cx + 8 + i * 16, meio, 1.55);
+    if (extra) {
+      S.text(ctx, '+' + extra, cx + 16 + nCor * 16, meio + 5, {
+        size: 13, color: '#ff9bab', outline: 'rgba(8,10,24,.9)', outlineW: 3, shadow: false });
+    }
+    return w;
+  };
+
   HUD.draw = function (ctx, g) {
     var p = g.player;
 
-    // painel
+    HUD.perfil(ctx, {
+      charId: g.charId, x: 8, y: 8, lado: 32,
+      rings: g.rings, lives: g.lives, t: g.frames, alerta: g.rings === 0
+    });
+
     ctx.save();
-    ctx.globalAlpha = .28;
-    ctx.fillStyle = '#060a18';
-    S.roundRect(ctx, 6, 6, 186, 66, 8); ctx.fill();
+    ctx.globalAlpha = .4; ctx.fillStyle = '#060a18';
+    S.roundRect(ctx, 8, 54, 172, 42, 9); ctx.fill();
     ctx.restore();
-
-    label(ctx, 'PONTOS', 16, 26);
-    value(ctx, S.pad(g.score, 6), 96, 26);
-
-    label(ctx, 'TEMPO', 16, 46, g.timeWarn ? '#ff5c5c' : '#ffd23c');
-    value(ctx, S.fmtClock(g.time), 96, 46);
-
-    var lowRings = g.rings === 0 && Math.floor(g.frames / 8) % 2 === 0;
-    label(ctx, S.pickupLabel(g.charId), 16, 66, lowRings ? '#ff5c5c' : '#ffd23c');
-    value(ctx, S.pad(g.rings, 3), 96, 66);
-
-    // vidas
-    ctx.save();
-    ctx.globalAlpha = .28; ctx.fillStyle = '#060a18';
-    S.roundRect(ctx, 6, S.H - 44, 104, 38, 8); ctx.fill();
-    ctx.restore();
-    S.Gfx.drawChar(ctx, g.charId, { x: 30, y: S.H - 12, state: 'idle', t: g.frames * .5, facing: 1, scale: .58 });
-    value(ctx, 'x ' + g.lives, 56, S.H - 16, '#ffffff');
+    label(ctx, 'PONTOS', 18, 72);
+    value(ctx, S.pad(g.score, 6), 98, 72);
+    label(ctx, 'TEMPO', 18, 90, g.timeWarn ? '#ff5c5c' : '#ffd23c');
+    value(ctx, S.fmtClock(g.time), 98, 90);
 
     // esmeraldas
     for (var i = 0; i < 6; i++) {
@@ -59,7 +92,7 @@
     }
 
     // temporizadores de itens
-    var ty = 88;
+    var ty = 112;
     if (p.invincTimer > 0) ty = timerBar(ctx, ty, 'INVENCIVEL', p.invincTimer / 1200, '#ffd23c');
     if (p.shoesTimer > 0) ty = timerBar(ctx, ty, 'TENIS', p.shoesTimer / 1200, '#e03027');
     if (p.superForm) ty = timerBar(ctx, ty, 'SUPER', Math.min(1, g.rings / 50), '#fff3a8');

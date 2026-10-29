@@ -8,6 +8,7 @@
 
   Gfx.CHARS = {
     lula: {
+      face: { x: .416, y: .167, h: .333 },
       id: 'lula', name: 'LULA', full: 'LUIZ INACIO LULA DA SILVA',
       human: true, hairStyle: 'wavy', beard: true, smile: true,
       body: '#212f58', body2: '#31447a', dark: '#111833',
@@ -22,6 +23,7 @@
       desc: 'Junta picanhas. Mesmos poderes e velocidade de todos.'
     },
     bolsonaro: {
+      face: { x: .469, y: .194, h: .389 },
       id: 'bolsonaro', name: 'BOLSONARO', full: 'JAIR BOLSONARO',
       human: true, hairStyle: 'short', beard: false, smile: false,
       body: '#22305e', body2: '#31457e', dark: '#121c3c',
@@ -36,6 +38,7 @@
       desc: 'Junta pilulas azuis. Mesmos poderes e velocidade de todos.'
     },
     alexandre: {
+      face: { x: .493, y: .215, h: .431 },
       id: 'alexandre', name: 'ALEXANDRE DE MORAIS', full: 'ALEXANDRE DE MORAIS',
       human: true, hairStyle: 'bald', beard: false, smile: false,
       body: '#1a1a20', body2: '#2b2b34', dark: '#0c0c10',
@@ -51,6 +54,7 @@
       desc: 'Junta dinheiro. Mesmos poderes e velocidade de todos.'
     },
     renan: {
+      face: { x: .484, y: .250, h: .500 },
       id: 'renan', name: 'RENAN SANTOS', full: 'RENAN SANTOS',
       human: true, hairStyle: 'short', beard: 'stubble', smile: false, noTie: true,
       body: '#1a295e', body2: '#273a7d', dark: '#0e183f',
@@ -65,6 +69,7 @@
       desc: 'Junta aneis. Mesmos poderes e velocidade de todos.'
     },
     trump: {
+      face: { x: .494, y: .201, h: .403 },
       id: 'trump', name: 'DONALD TRUMP', full: 'DONALD J. TRUMP',
       human: true, hairStyle: 'short', beard: false, smile: false,
       body: '#0e1a52', body2: '#1d2d78', dark: '#060c2c',
@@ -2513,6 +2518,35 @@
     // brilho
     ctx.fillStyle = 'rgba(255,255,255,.4)';
     S.ellipse(ctx, -3.6, -6.4, 2.6, 1.1, -.45); ctx.fill();
+    ctx.restore();
+  };
+})();
+
+/* ---------- moeda de R$ da fase especial ---------- */
+(function () {
+  'use strict';
+  var S = window.S, Gfx = S.Gfx;
+
+  Gfx.moedaReal = function (ctx, x, y, t, scale) {
+    scale = scale || 1;
+    var w = .32 + .68 * Math.abs(Math.cos(t * .1));
+    ctx.save();
+    ctx.translate(x, y);
+
+    ctx.save();
+    ctx.globalAlpha = .4;
+    ctx.fillStyle = '#ffc62e';
+    S.circle(ctx, 0, 0, 13 * scale); ctx.fill();
+    ctx.restore();
+
+    ctx.scale(scale * w, scale);
+    ctx.fillStyle = '#8a5510'; S.circle(ctx, 0, 0, 10); ctx.fill();
+    ctx.fillStyle = '#e8a521'; S.circle(ctx, 0, 0, 8.6); ctx.fill();
+    ctx.fillStyle = '#ffd04a'; S.circle(ctx, 0, 0, 6.8); ctx.fill();
+    ctx.fillStyle = 'rgba(255,255,255,.4)';
+    S.ellipse(ctx, -2.6, -3.4, 3, 1.6, -.5); ctx.fill();
+    S.text(ctx, 'R$', 0, 3.2, {
+      size: 9, align: 'center', color: '#8a5510', shadow: false });
     ctx.restore();
   };
 })();

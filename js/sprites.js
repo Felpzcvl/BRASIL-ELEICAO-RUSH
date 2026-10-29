@@ -83,3 +83,67 @@
     ctx.restore();
   };
 })();
+
+/* ---------- retrato de perfil (cabeça e ombros, recortado) ---------- */
+(function () {
+  'use strict';
+  var S = window.S, Gfx = S.Gfx;
+
+  var PADRAO = { x: .5, y: .21, h: .42 };
+
+  /* (x,y) = canto superior esquerdo da moldura quadrada de lado `lado` */
+  Gfx.retrato = function (ctx, id, x, y, lado, opts) {
+    opts = opts || {};
+    var c = Gfx.CHARS[id] || {};
+    var cx = x + lado / 2, cy = y + lado / 2;
+    var r = opts.raio === undefined ? lado * .26 : opts.raio;
+
+    ctx.save();
+
+    // fundo da moldura, na cor do personagem
+    ctx.fillStyle = opts.fundo || S.shade(c.card || c.suit || '#1b2440', -.35);
+    S.roundRect(ctx, x, y, lado, lado, r); ctx.fill();
+
+    // recorta e desenha o rosto
+    ctx.save();
+    ctx.beginPath(); S.roundRect(ctx, x, y, lado, lado, r); ctx.clip();
+    var im = Gfx.spriteDe(id);
+    if (im) {
+      var f = c.face || PADRAO;
+      var W = im.naturalWidth, H = im.naturalHeight;
+      var k = (lado * .72) / (f.h * H);
+      ctx.drawImage(im, cx - f.x * W * k, cy - (f.y + f.h * .17) * H * k, W * k, H * k);
+    } else {
+      var kk = (lado * .72) / 26;
+      Gfx.drawChar(ctx, id, { x: cx, y: cy + 34.5 * kk, state: 'idle', t: 0, facing: 1, scale: kk });
+    }
+    ctx.restore();
+
+    // borda
+    ctx.strokeStyle = opts.borda || 'rgba(255,255,255,.55)';
+    ctx.lineWidth = opts.larguraBorda || 1.6;
+    S.roundRect(ctx, x + .8, y + .8, lado - 1.6, lado - 1.6, Math.max(1, r - .8)); ctx.stroke();
+    ctx.restore();
+  };
+
+  /* coração das vidas; `vazio` desenha o slot gasto */
+  Gfx.coracao = function (ctx, x, y, s, vazio) {
+    ctx.save();
+    ctx.translate(x, y); ctx.scale(s, s);
+    ctx.beginPath();
+    ctx.moveTo(0, 4.4);
+    ctx.bezierCurveTo(-5.6, -.6, -4.4, -6.4, 0, -2.5);
+    ctx.bezierCurveTo(4.4, -6.4, 5.6, -.6, 0, 4.4);
+    ctx.closePath();
+    if (vazio) {
+      ctx.fillStyle = 'rgba(255,255,255,.14)'; ctx.fill();
+      ctx.strokeStyle = 'rgba(255,255,255,.3)'; ctx.lineWidth = 1.1; ctx.stroke();
+    } else {
+      ctx.fillStyle = '#e03a51'; ctx.fill();
+      ctx.strokeStyle = '#3d0a16'; ctx.lineWidth = 1.3; ctx.stroke();
+      ctx.fillStyle = 'rgba(255,255,255,.5)';
+      S.ellipse(ctx, -1.9, -2.2, 1.5, 1, -.5); ctx.fill();
+    }
+    ctx.restore();
+  };
+})();

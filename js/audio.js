@@ -325,7 +325,8 @@
     lula: 'audio/lula.mp3',
     bolsonaro: 'audio/bolsonaro.mp3',
     alexandre: 'audio/alexandre.mp3',
-    renan: 'audio/renan.mp3'
+    renan: 'audio/renan.mp3',
+    trump: 'audio/trump.mp3'
   };
   A._voiceEls = {};
   A._voiceNow = null;
