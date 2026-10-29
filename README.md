@@ -13,7 +13,7 @@ arquivos externos são a arte de capa (`assets/`) e as falas dos personagens
 
 ## Como jogar
 
-**Jogue direto no navegador:** <https://sonicdoido.vercel.app/>
+**Jogue direto no navegador:** <https://brasileleicaorush.vercel.app/>
 
 Não precisa instalar nada, nem criar conta. Funciona em computador (teclado ou
 controle) e em celular e tablet (botões na tela).
