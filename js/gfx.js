@@ -2447,6 +2447,33 @@
     return true;
   };
 
+  /* arte de abertura do estudio */
+  Gfx.SPLASH_SRC = 'assets/splash.webp';
+  Gfx.splash = null;
+
+  Gfx.loadSplash = function () {
+    if (Gfx.splash) return Gfx.splash;
+    var img = new Image();
+    img.src = Gfx.SPLASH_SRC;
+    Gfx.splash = img;
+    return img;
+  };
+
+  Gfx.splashPronta = function () {
+    var i = Gfx.splash;
+    return !!(i && i.complete && i.naturalWidth > 0);
+  };
+
+  Gfx.drawSplash = function (ctx) {
+    var img = Gfx.splash;
+    if (!Gfx.splashPronta()) return false;
+    var iw = img.naturalWidth, ih = img.naturalHeight;
+    var sc = Math.max(S.W / iw, S.H / ih);
+    var w = iw * sc, h = ih * sc;
+    ctx.drawImage(img, -(w - S.W) * .5, -(h - S.H) * .5, w, h);
+    return true;
+  };
+
   /* faixa escura na base so para o texto ficar legivel */
   Gfx.capaScrim = function (ctx, topo) {
     var g = ctx.createLinearGradient(0, topo, 0, S.H);

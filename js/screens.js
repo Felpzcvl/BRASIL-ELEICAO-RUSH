@@ -26,9 +26,13 @@
     draw: function (ctx, g) {
       var t = this.t;
       ctx.fillStyle = '#05060c'; ctx.fillRect(0, 0, S.W, S.H);
-      var a = S.clamp(t / 30, 0, 1) * S.clamp((170 - t) / 30, 0, 1);
+      var a = S.clamp(t / 26, 0, 1) * S.clamp((170 - t) / 30, 0, 1);
       ctx.save();
       ctx.globalAlpha = a;
+
+      if (S.Gfx.drawSplash(ctx)) { ctx.restore(); return; }
+
+      // enquanto a arte nao carrega, a abertura desenhada em codigo
       ctx.translate(S.W / 2, S.H / 2 - 10);
       var sc = 1 + Math.max(0, (30 - t)) * .02;
       ctx.scale(sc, sc);
