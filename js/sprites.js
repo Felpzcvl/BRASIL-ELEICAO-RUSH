@@ -19,6 +19,21 @@
 
   Gfx.SPR_ALT = ALTURA;
 
+  /* cartas ilustradas da tela de seleção */
+  var cartas = {};
+  Gfx.CARTA_ASPECTO = 391 / 578;
+  IDS.forEach(function (id) {
+    var im = new Image();
+    im.onload = function () { im.pronto = true; };
+    im.src = 'assets/cards/' + id + '.webp';
+    cartas[id] = im;
+  });
+
+  Gfx.cartaDe = function (id) {
+    var im = cartas[id];
+    return (im && im.pronto && im.naturalWidth) ? im : null;
+  };
+
   Gfx.spriteDe = function (id) {
     var im = imgs[id];
     return (im && im.pronto && im.naturalWidth) ? im : null;

@@ -101,6 +101,8 @@
   /* cartão de personagem na seleção */
   UI.charCard = function (ctx, id, x, y, w, h, selected, t) {
     var c = S.Gfx.CHARS[id];
+    var arte = S.Gfx.cartaDe && S.Gfx.cartaDe(id);
+    if (arte) { UI.cartaArte(ctx, arte, x, y, w, h, selected, t); return; }
     ctx.save();
     ctx.globalAlpha = selected ? 1 : .72;
     var g = ctx.createLinearGradient(0, y, 0, y + h);
@@ -130,6 +132,39 @@
       size: ns, align: 'center', color: selected ? '#ffd23c' : '#ffffff',
       outline: 'rgba(0,0,0,.7)', outlineW: 4, shadow: false
     });
+  };
+
+  /* carta ilustrada: a arte já traz personagem, fundo e nome */
+  UI.cartaArte = function (ctx, arte, x, y, w, h, selected, t) {
+    var k = selected ? 1.055 : 1;
+    var cx = x + w / 2, cy = y + h / 2;
+    var pw = w * k, ph = h * k;
+    var px = cx - pw / 2, py = cy - ph / 2;
+
+    if (selected) {
+      ctx.save();
+      ctx.globalAlpha = .3 + .18 * Math.abs(Math.sin(t * .07));
+      ctx.fillStyle = '#ffd23c';
+      S.roundRect(ctx, px - 7, py - 7, pw + 14, ph + 14, 12); ctx.fill();
+      ctx.restore();
+    }
+
+    ctx.save();
+    ctx.globalAlpha = selected ? 1 : .74;
+    ctx.drawImage(arte, px, py, pw, ph);
+    ctx.restore();
+
+    if (!selected) {
+      ctx.save();
+      ctx.globalAlpha = .3; ctx.fillStyle = '#060b1e';
+      S.roundRect(ctx, px, py, pw, ph, 6); ctx.fill();
+      ctx.restore();
+    } else {
+      ctx.save();
+      ctx.strokeStyle = '#ffd23c'; ctx.lineWidth = 2.4;
+      S.roundRect(ctx, px - 1.2, py - 1.2, pw + 2.4, ph + 2.4, 7); ctx.stroke();
+      ctx.restore();
+    }
   };
 
   UI.scanlines = function (ctx) {

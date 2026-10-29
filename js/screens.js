@@ -191,18 +191,20 @@
       S.text(ctx, 'ESCOLHA SEU HEROI', S.W / 2, 44, {
         size: 24, align: 'center', color: '#ffd23c', outline: '#3a1d00', outlineW: 5, shadow: false });
 
-      var n = IDS.length, gap = 12;
-      var cw = Math.min(150, Math.floor((S.W - 44 - gap * (n - 1)) / n));
-      var ch = 168;
+      var n = IDS.length, gap = 10;
+      var asp = S.Gfx.CARTA_ASPECTO || .676;
+      var cw = Math.floor((S.W - 30 - gap * (n - 1)) / n);
+      var ch = Math.min(170, Math.round(cw / asp));
+      cw = Math.round(ch * asp);
       var total = cw * n + gap * (n - 1);
       for (var i = 0; i < n; i++) {
         var x = (S.W - total) / 2 + i * (cw + gap);
         var sel = i === this.sel;
-        S.UI.charCard(ctx, IDS[i], x, 66 + (sel ? -8 : 0), cw, ch, sel, t + i * 30);
+        S.UI.charCard(ctx, IDS[i], x, 70 + (sel ? -5 : 0), cw, ch, sel, t + i * 30);
       }
 
       if (S.Audio.voiceIsPlaying()) {
-        speaker(ctx, (S.W - total) / 2 + this.sel * (cw + gap) + cw / 2, 50, t);
+        speaker(ctx, (S.W - total) / 2 + this.sel * (cw + gap) + cw / 2, 52, t);
       }
 
       var c = S.Gfx.CHARS[IDS[this.sel]];
