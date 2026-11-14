@@ -91,7 +91,7 @@
       S.Audio.playMusic('title');
     },
     items: function () {
-      return [
+      var base = [
         { label: 'NOVO JOGO' },
         { label: 'CONTINUAR', disabled: S.Save.clearedCount() === 0 },
         { label: 'SELECIONAR FASE' },
@@ -100,6 +100,8 @@
         { label: 'CONTROLES' },
         { label: 'CREDITOS' }
       ];
+      if (S.Api && S.Api.ligado) base.push({ label: 'RANKING', value: 'BANCO' });
+      return base;
     },
     update: function (g) {
       this.t++;
@@ -118,6 +120,7 @@
           case 4: g.go('options'); break;
           case 5: g.go('controls'); break;
           case 6: g.go('credits'); break;
+          case 7: g.go('ranking'); break;
         }
       }
     },
@@ -126,8 +129,11 @@
       S.Gfx.drawBackground(ctx, 'congresso', { x: t * 1.1, y: 60 }, t);
       S.UI.vignette(ctx, .55);
       S.UI.title(ctx, t, 62, .62);
-      S.UI.panel(ctx, S.W / 2 - 170, 108, 340, 214);
-      S.UI.menu(ctx, this.items(), this.sel, S.W / 2, 140, { gap: 30, size: 18, w: 320, align: 'left' });
+      var itens = this.items();
+      var oito = itens.length > 7;
+      S.UI.panel(ctx, S.W / 2 - 170, oito ? 100 : 108, 340, oito ? 238 : 214);
+      S.UI.menu(ctx, itens, this.sel, S.W / 2, oito ? 130 : 140,
+                { gap: oito ? 27 : 30, size: 18, w: 320, align: 'left' });
       S.UI.hint(ctx, 'SETAS mover  •  ENTER confirmar  •  ESC voltar');
     }
   };
@@ -655,6 +661,16 @@
       this.total = s.score;
       S.Audio.playMusic('results');
       S.Save.recordAct(s.def.id, s.time, s.score + this.timeB + this.ringB);
+      if (S.Api && S.Api.ligado) {
+        S.Api.registrarPartida({
+          personagem: s.charId,
+          ato: s.def.id,
+          pontuacao: s.score + this.timeB + this.ringB,
+          tempo_frames: s.time,
+          itens: s.rings,
+          concluida: true
+        });
+      }
       if (s.actIndex + 1 < S.Levels.count()) S.Save.unlock(s.actIndex + 1);
     },
     update: function (g) {
@@ -784,6 +800,7 @@
       S.Special.start(idx, sess.charId, function (win) {
         if (win) {
           S.Save.data.emeralds[idx] = true;
+          if (S.Api && S.Api.ligado && sess.def) S.Api.registrarEsmeralda(sess.def.id);
           S.Save.save();
           sess.score += 10000;
           sess.emeraldWon = true;

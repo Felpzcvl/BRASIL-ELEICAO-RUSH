@@ -24,6 +24,7 @@
       S.Audio.setSfxVol(S.Save.data.options.sfx);
       S.Audio.preloadVoices();
       S.Gfx.loadCapa();
+      if (S.Api) S.Api.init();
       S.Gfx.loadSplash();
       S.Input.init(this.canvas);
       this.resize();
